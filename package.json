@@ -1,0 +1,28 @@
+{
+  "name": "simple-store",
+  "version": "1.0.0",
+  "description": "A pretty simple NodeJS module to handle saving / loading JSON datasets without the fuss, overhead, or hassle of doing it yourself in a backwards compatible manner.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Scratso/SimpleStore.git"
+  },
+  "keywords": [
+    "saving",
+    "loading",
+    "persistent",
+    "data",
+    "store",
+    "json",
+    "simple"
+  ],
+  "author": "Damian Heaton <dh64784@gmail.com> (damianheaton.com)",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Scratso/SimpleStore/issues"
+  },
+  "homepage": "https://github.com/Scratso/SimpleStore#readme"
+}

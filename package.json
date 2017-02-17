@@ -1,6 +1,6 @@
 {
   "name": "simplestore-fs",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A pretty simple NodeJS module to handle saving / loading JSON datasets without the fuss, overhead, or hassle of doing it yourself in a backwards compatible manner.",
   "main": "index.js",
   "scripts": {

@@ -59,4 +59,38 @@ class Jar { // who stole the cookies from the cookie jar? it isn't a cookie...
   }
 }
 
+class JarSync { // synchronous variant to Jar
+  constructor (file, ...defaultObjects) { // let infinite objects be saved in one file :) it makes things super-sweet
+    this.file = file;
+    this.data = defaultObjects; // set the data to be the default objects provided
+    var that = this;
+    try{
+      var data = fs.readFileSync(file, 'utf-8');
+    } catch (err) {
+      // woops, didn't work!
+      if (err.code !== 'ENOENT') // if the error is a nonexistant file, that's fine. there's just no data to load :>
+        throw err; // otherwise, we need to throw this one back to the dev.
+    }
+    var json = JSON.parse (data); // first we need to parse the JSON file
+    for (var cookie in json) { // what? I want a cookie.
+      // backwards-compatibility is absolutely key. to that end, we need to cycle each property of the cookie and update the Jar's cookie. that way, we don't remove new properties from a cookie. (any good dev would not remove a cookie entirely between versions... but we'll account for them)
+
+      if (that.data[cookie] !== undefined) { // if the dev removed a cookie from a Jar, that cookie should now be undefined... so DON'T TRY AND ASSIGN TO IT [it's dead, Jim, and we ain't resuscitating it]
+        for (var crumb in json[cookie]) {
+          that.data[cookie][crumb] = json[cookie][crumb]; // update the loaded cookie
+        }
+      }
+    }
+
+    return this.data;
+  }
+
+  save (spaces=2) {
+    var json = JSON.stringify (this.data, null, spaces);
+    fs.writeFileSync (this.file, json, 'utf-8');
+    return this.data;
+  }
+}
+
 exports.Jar = Jar;
+exports.JarSync = JarSync;
